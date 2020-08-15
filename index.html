@@ -39,9 +39,9 @@
 
     <script>
         const searchButton = document.getElementById("search");
+        const displayCity = document.getElementById("city");
         searchButton.addEventListener("click",function(){
             const cityName = document.getElementById("city-name").value;
-            const displayCity = document.getElementById("city");
             displayCity.innerText = cityName;
             showWeather(cityName);
         })
@@ -56,7 +56,13 @@
                 temperatureText.innerText = parseInt(data.main.temp-273.15);
                 weatherType.innerText = data.weather[0].main; 
                 })
-                .catch(error => alert(error))
+                .catch(error => {
+                    displayCity.innerText = "Enter The Name Of the City More Carefully"
+                    temperatureText.innerText = "";
+                    weatherType.innerText = "";
+                    alert(error);
+                })
+
         }
     </script>
 </body>
